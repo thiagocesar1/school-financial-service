@@ -1,0 +1,7 @@
+CREATE TABLE client(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  marketing_lead_id VARCHAR(30) NOT NULL,
+  document VARCHAR(20) NOT NULL
+);

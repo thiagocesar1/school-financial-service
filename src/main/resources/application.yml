@@ -19,3 +19,8 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    url: jdbc:postgresql://localhost:5432/financial_service
+    schemas: public
+    user: postgres
+    password: 1234
