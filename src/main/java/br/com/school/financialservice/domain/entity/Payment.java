@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -17,18 +18,21 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
-    private Long id;
+    private Integer id;
 
     @Column(name = "payment_date")
-    private LocalDate paymentDate;
+    private LocalDate date;
 
     @Enumerated(EnumType.STRING)
     @Column
-    private PaymentType paymentType;
+    private PaymentType type;
 
     @Enumerated(EnumType.STRING)
     @Column
-    private PaymentStatus paymentStatus;
+    private PaymentStatus status;
+
+    @Column
+    private BigDecimal value;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
