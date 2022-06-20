@@ -23,7 +23,6 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     @Transactional
-    /* FIXME: Corrigir mapping da enum */
     public void firstBuy(Payment payment) {
         Client client = clientRepository.save(payment.getClient());
         payment.setDate(LocalDate.now());

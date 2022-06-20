@@ -12,6 +12,6 @@ import java.math.BigDecimal;
 public class PaymentDTO {
     private ClientDTO client;
     private BigDecimal total;
-    private Integer type;
+    private String type;
     private BigDecimal value;
 }

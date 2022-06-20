@@ -37,4 +37,12 @@ public class Payment {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
+
+    public void cancelTransaction(){
+        this.setStatus(PaymentStatus.CANCELED);
+    }
+
+    public void endTransaction(){
+        this.setStatus(PaymentStatus.OK);
+    }
 }
