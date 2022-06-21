@@ -4,6 +4,7 @@ import br.com.school.financialservice.domain.entity.Payment;
 import br.com.school.financialservice.domain.enums.PaymentType;
 import br.com.school.financialservice.rest.dto.PaymentDTO;
 import br.com.school.financialservice.service.PaymentService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.spi.MappingContext;
@@ -22,7 +23,7 @@ public class PaymentController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void firstBuy(@RequestBody PaymentDTO paymentDTO) {
+    public void firstBuy(@RequestBody PaymentDTO paymentDTO) throws JsonProcessingException {
         Payment payment = modelMapper.map(paymentDTO, Payment.class);
         paymentService.firstBuy(payment);
     }
