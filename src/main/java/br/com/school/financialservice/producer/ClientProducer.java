@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClientProducer {
     private static final Logger logger = LoggerFactory.getLogger(ClientProducer.class);
-    private static final String topic = "clients";
+    private static final String topic = "client_added";
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
