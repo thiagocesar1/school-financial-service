@@ -1,4 +1,4 @@
-package br.com.school.financialservice.domain.enums;
+package br.com.school.financialservice.payment.enums;
 
 import lombok.Data;
 import lombok.Getter;

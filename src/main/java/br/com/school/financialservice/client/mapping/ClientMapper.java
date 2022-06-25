@@ -1,7 +1,6 @@
-package br.com.school.financialservice.rest.mappers;
+package br.com.school.financialservice.client.mapping;
 
-import br.com.school.financialservice.domain.entity.Client;
-import br.com.school.financialservice.rest.dto.ClientDTO;
+import br.com.school.financialservice.client.domain.Client;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

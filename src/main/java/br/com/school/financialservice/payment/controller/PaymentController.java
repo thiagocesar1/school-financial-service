@@ -1,9 +1,9 @@
-package br.com.school.financialservice.rest.controller;
+package br.com.school.financialservice.payment.controller;
 
-import br.com.school.financialservice.domain.entity.Payment;
-import br.com.school.financialservice.rest.dto.PaymentDTO;
-import br.com.school.financialservice.rest.mappers.PaymentMapper;
-import br.com.school.financialservice.service.PaymentService;
+import br.com.school.financialservice.payment.mapping.PaymentDTO;
+import br.com.school.financialservice.payment.mapping.PaymentMapper;
+import br.com.school.financialservice.payment.service.PaymentService;
+import br.com.school.financialservice.payment.domain.Payment;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

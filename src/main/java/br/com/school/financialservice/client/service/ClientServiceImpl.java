@@ -1,9 +1,9 @@
-package br.com.school.financialservice.service.impl;
+package br.com.school.financialservice.client.service;
 
-import br.com.school.financialservice.domain.entity.Client;
-import br.com.school.financialservice.domain.repository.ClientRepository;
-import br.com.school.financialservice.producer.ClientProducer;
-import br.com.school.financialservice.service.ClientService;
+import br.com.school.financialservice.client.domain.Client;
+import br.com.school.financialservice.client.domain.ClientRepository;
+import br.com.school.financialservice.client.producer.ClientProducer;
+import br.com.school.financialservice.client.service.ClientService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +21,13 @@ public class ClientServiceImpl implements ClientService {
     private ObjectMapper objectMapper;
 
     @Override
-    public Client save(Client client) throws JsonProcessingException {
+    public Client save(Client client){
         client = clientRepository.save(client);
-        clientProducer.send(objectMapper.writeValueAsString(client));
+        try {
+            clientProducer.send(objectMapper.writeValueAsString(client));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
         return client;
     }
 }

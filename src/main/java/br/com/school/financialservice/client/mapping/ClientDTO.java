@@ -1,4 +1,4 @@
-package br.com.school.financialservice.rest.dto;
+package br.com.school.financialservice.client.mapping;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

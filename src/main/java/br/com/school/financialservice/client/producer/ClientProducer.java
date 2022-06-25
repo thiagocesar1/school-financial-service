@@ -1,7 +1,5 @@
-package br.com.school.financialservice.producer;
+package br.com.school.financialservice.client.producer;
 
-import br.com.school.financialservice.domain.entity.Client;
-import com.netflix.discovery.converters.Auto;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

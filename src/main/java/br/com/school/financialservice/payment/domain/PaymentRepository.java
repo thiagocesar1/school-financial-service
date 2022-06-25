@@ -1,6 +1,6 @@
-package br.com.school.financialservice.domain.repository;
+package br.com.school.financialservice.payment.domain;
 
-import br.com.school.financialservice.domain.entity.Payment;
+import br.com.school.financialservice.payment.domain.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PaymentRepository extends JpaRepository<Payment, Integer> {

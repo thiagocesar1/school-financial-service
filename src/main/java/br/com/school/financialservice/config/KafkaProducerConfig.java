@@ -1,6 +1,5 @@
-package br.com.school.financialservice.producer;
+package br.com.school.financialservice.config;
 
-import br.com.school.financialservice.domain.entity.Client;
 import lombok.AllArgsConstructor;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;

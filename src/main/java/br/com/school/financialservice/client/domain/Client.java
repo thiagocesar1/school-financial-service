@@ -1,5 +1,6 @@
-package br.com.school.financialservice.domain.entity;
+package br.com.school.financialservice.client.domain;
 
+import br.com.school.financialservice.payment.domain.Payment;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;

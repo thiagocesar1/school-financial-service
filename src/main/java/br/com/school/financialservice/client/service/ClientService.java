@@ -1,6 +1,6 @@
-package br.com.school.financialservice.service;
+package br.com.school.financialservice.client.service;
 
-import br.com.school.financialservice.domain.entity.Client;
+import br.com.school.financialservice.client.domain.Client;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 public interface ClientService {

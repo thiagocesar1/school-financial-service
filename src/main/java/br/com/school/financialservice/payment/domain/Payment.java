@@ -1,7 +1,8 @@
-package br.com.school.financialservice.domain.entity;
+package br.com.school.financialservice.payment.domain;
 
-import br.com.school.financialservice.domain.enums.PaymentStatus;
-import br.com.school.financialservice.domain.enums.PaymentType;
+import br.com.school.financialservice.client.domain.Client;
+import br.com.school.financialservice.payment.enums.PaymentStatus;
+import br.com.school.financialservice.payment.enums.PaymentType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
