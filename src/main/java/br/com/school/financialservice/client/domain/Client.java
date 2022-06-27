@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
@@ -36,6 +37,6 @@ public class Client {
     @OneToMany(mappedBy = "client")
     private List<Payment> payments;
 
-    @OneToOne(mappedBy = "wallet")
+    @OneToOne(mappedBy = "client")
     private Wallet wallet;
 }

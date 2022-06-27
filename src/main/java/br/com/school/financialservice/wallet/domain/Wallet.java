@@ -1,6 +1,6 @@
 package br.com.school.financialservice.wallet.domain;
 
-import ch.qos.logback.core.net.server.Client;
+import br.com.school.financialservice.client.domain.Client;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

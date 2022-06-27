@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/payment")
 public class PaymentController {
@@ -17,7 +19,7 @@ public class PaymentController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void firstBuy(@RequestBody PaymentDTO paymentDTO) throws JsonProcessingException {
+    public void firstBuy(@Valid @RequestBody PaymentDTO paymentDTO) throws JsonProcessingException {
         Payment payment = PaymentMapper.INSTANCE.toPayment(paymentDTO);
         paymentService.firstBuy(payment);
     }
