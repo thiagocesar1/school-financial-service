@@ -1,11 +1,11 @@
 package br.com.school.financialservice.payment.mapping;
 
-import br.com.school.financialservice.client.mapping.ClientDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
@@ -13,13 +13,22 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Data
 public class PaymentDTO {
-    @NotNull
-    private ClientDTO client;
+    @NotBlank(message = "Client name is mandatory.")
+    private String clientName;
 
-    @NotEmpty(message = "Payment type is mandatory.")
-    @NotNull
+    @NotBlank(message = "Client email is mandatory.")
+    @Email(message = "Invalid Email.")
+    private String clientEmail;
+
+    @NotBlank(message = "Client Lead ID is mandatory.")
+    private String clientMarketingLeadId;
+
+    @NotBlank(message = "Client document is mandatory.")
+    private String clientDocument;
+
+    @NotBlank(message = "Payment type is mandatory.")
     private String type;
 
-    @NotNull
+    @NotNull(message = "Payment value is mandatory.")
     private BigDecimal value;
 }
