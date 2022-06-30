@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -30,5 +31,6 @@ public class PaymentDTO {
     private String type;
 
     @NotNull(message = "Payment value is mandatory.")
+    @DecimalMin(value = "0.01", inclusive = false, message = "Payment value needs to be greater than 0")
     private BigDecimal value;
 }
