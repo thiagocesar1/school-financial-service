@@ -6,6 +6,8 @@ import br.com.school.financialservice.payment.domain.Payment;
 import br.com.school.financialservice.payment.domain.PaymentRepository;
 import br.com.school.financialservice.payment.enums.PaymentStatus;
 import br.com.school.financialservice.payment.service.PaymentService;
+import br.com.school.financialservice.wallet.domain.Wallet;
+import br.com.school.financialservice.wallet.service.WalletService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,12 +21,17 @@ public class PaymentServiceImpl implements PaymentService {
     private ClientService clientService;
 
     @Autowired
+    private WalletService walletService;
+
+    @Autowired
     private PaymentRepository paymentRepository;
 
     @Override
     @Transactional
     public void firstBuy(Payment payment) throws JsonProcessingException {
         Client client = clientService.save(payment.getClient());
+        Wallet wallet = walletService.generateWallet(client);
+        client.setWallet(wallet);
         payment.setClient(client);
         this.save(payment);
     }

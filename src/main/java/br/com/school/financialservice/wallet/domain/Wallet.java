@@ -2,6 +2,7 @@ package br.com.school.financialservice.wallet.domain;
 
 import br.com.school.financialservice.client.domain.Client;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Wallet {
