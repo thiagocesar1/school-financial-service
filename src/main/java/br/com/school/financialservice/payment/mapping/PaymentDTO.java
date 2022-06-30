@@ -1,5 +1,6 @@
 package br.com.school.financialservice.payment.mapping;
 
+import br.com.school.financialservice.card.mapping.CardDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,4 +34,6 @@ public class PaymentDTO {
     @NotNull(message = "Payment value is mandatory.")
     @DecimalMin(value = "0.01", inclusive = false, message = "Payment value needs to be greater than 0")
     private BigDecimal value;
+
+    private CardDTO card;
 }

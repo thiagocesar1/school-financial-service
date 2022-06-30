@@ -34,7 +34,7 @@ public class Client {
     private String document;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "client")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
     private List<Payment> payments;
 
     @OneToOne(mappedBy = "client")

@@ -30,7 +30,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Transactional
     public void firstBuy(Payment payment) throws JsonProcessingException {
         Client client = clientService.save(payment.getClient());
-        Wallet wallet = walletService.generateWallet(client);
+        Wallet wallet = walletService.generateWallet(client, payment.getFirstBuyCard());
         client.setWallet(wallet);
         payment.setClient(client);
         this.save(payment);

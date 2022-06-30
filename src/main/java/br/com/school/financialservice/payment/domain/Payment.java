@@ -1,5 +1,6 @@
 package br.com.school.financialservice.payment.domain;
 
+import br.com.school.financialservice.card.domain.Card;
 import br.com.school.financialservice.client.domain.Client;
 import br.com.school.financialservice.payment.enums.PaymentStatus;
 import br.com.school.financialservice.payment.enums.PaymentType;
@@ -8,7 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -40,6 +40,8 @@ public class Payment {
     @JoinColumn(name = "client_id")
     private Client client;
 
+    @Transient
+    private Card firstBuyCard;
     public void cancelTransaction(){
         this.setStatus(PaymentStatus.CANCELED);
     }
