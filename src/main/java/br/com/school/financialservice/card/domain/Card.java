@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Data
 public class Card {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Integer id;
 

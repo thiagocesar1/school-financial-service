@@ -21,6 +21,8 @@ public class WalletServiceImpl implements WalletService {
     public Wallet generateWallet(Client client, Card card) {
         Wallet wallet = Wallet.builder().client(client).build();
         walletRepository.save(wallet);
+
+        card.setWallet(wallet);
         cardService.addCard(card);
 
         return wallet;
