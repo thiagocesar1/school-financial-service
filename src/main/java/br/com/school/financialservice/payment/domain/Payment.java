@@ -40,8 +40,10 @@ public class Payment {
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @Transient
-    private Card firstBuyCard;
+    @ManyToOne
+    @JoinColumn(name = "card_id")
+    private Card card;
+
     public void cancelTransaction(){
         this.setStatus(PaymentStatus.CANCELED);
     }

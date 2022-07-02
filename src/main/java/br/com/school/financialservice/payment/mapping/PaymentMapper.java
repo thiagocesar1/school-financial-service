@@ -15,6 +15,6 @@ public interface PaymentMapper {
     @Mapping(source = "clientEmail", target = "client.email")
     @Mapping(source = "clientMarketingLeadId", target = "client.marketingLeadId")
     @Mapping(source = "clientDocument", target = "client.document")
-    @Mapping(source = "card", target = "firstBuyCard")
+    @Mapping(source = "card", target = "card")
     Payment toPayment(PaymentDTO paymentDTO);
 }
