@@ -1,6 +1,9 @@
 package br.com.school.financialservice.validation;
 
 import br.com.school.financialservice.card.exception.InvalidCardException;
+import br.com.school.financialservice.payment.service.PaymentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,6 +22,7 @@ import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class ApplicationControllerAdvice extends ResponseEntityExceptionHandler {
+    private static final Logger logger = LoggerFactory.getLogger(ApplicationControllerAdvice.class);
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -37,6 +41,7 @@ public class ApplicationControllerAdvice extends ResponseEntityExceptionHandler 
     public ResponseEntity<Object> handleIvalidCardException(InvalidCardException ex) {
         Map<String, String> errors = new HashMap<>();
         String errorMessage = ex.getMessage();
+        logger.error(errorMessage);
         errors.put("errors", errorMessage);
         return new ResponseEntity<Object>(errors, HttpStatus.BAD_REQUEST);
     }

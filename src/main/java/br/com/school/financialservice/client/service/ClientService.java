@@ -4,5 +4,7 @@ import br.com.school.financialservice.client.domain.Client;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 public interface ClientService {
-    Client save(Client client) throws JsonProcessingException;
+    Client save(Client client);
+
+     void sendClientToKafka(Client client);
 }
