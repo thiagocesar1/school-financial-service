@@ -1,5 +1,7 @@
 package br.com.school.financialservice.payment.service;
 
+import br.com.school.financialservice.card.domain.Card;
+import br.com.school.financialservice.card.service.CardService;
 import br.com.school.financialservice.client.domain.Client;
 import br.com.school.financialservice.client.service.ClientService;
 import br.com.school.financialservice.payment.domain.Payment;
@@ -24,16 +26,24 @@ public class PaymentServiceImpl implements PaymentService {
     private WalletService walletService;
 
     @Autowired
+    private CardService cardService;
+
+    @Autowired
     private PaymentRepository paymentRepository;
 
     @Override
     @Transactional
     public void firstBuy(Payment payment) throws JsonProcessingException {
         Client client = clientService.save(payment.getClient());
-        Wallet wallet = walletService.generateWallet(client, payment.getFirstBuyCard());
-        client.setWallet(wallet);
+        Wallet wallet = walletService.generateWallet(client, payment.getCard());
+
+        payment.getCard().setWallet(wallet);
+        Card card = cardService.addCard(payment.getCard());
+
         payment.setClient(client);
+        payment.setCard(card);
         this.save(payment);
+        this.processPayment(payment);
     }
 
     @Override
@@ -44,5 +54,9 @@ public class PaymentServiceImpl implements PaymentService {
         paymentRepository.save(payment);
     }
 
-
+    private void processPayment(Payment payment){
+        cardService.validateCard(payment.getCard());
+        payment.setStatus(PaymentStatus.OK);
+        paymentRepository.save(payment);
+    }
 }
