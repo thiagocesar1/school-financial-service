@@ -21,6 +21,6 @@ public class PaymentController {
     @ResponseStatus(HttpStatus.CREATED)
     public void firstBuy(@Valid @RequestBody PaymentDTO paymentDTO) throws JsonProcessingException {
         Payment payment = PaymentMapper.INSTANCE.toPayment(paymentDTO);
-        paymentService.firstBuy(payment);
+        paymentService.createPaymentAndAdditionalItems(payment);
     }
 }

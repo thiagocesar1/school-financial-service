@@ -37,7 +37,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     @Transactional
-    public void firstBuy(Payment payment){
+    public void createPaymentAndAdditionalItems(Payment payment){
         Client client = clientService.save(payment.getClient());
         Wallet wallet = walletService.generateWallet(client, payment.getCard());
 
@@ -61,9 +61,12 @@ public class PaymentServiceImpl implements PaymentService {
 
     private void processPayment(Payment payment){
         logger.info("Processing payment {}", payment.getId());
+
         cardService.validateCard(payment.getCard());
         payment.setStatus(PaymentStatus.OK);
         paymentRepository.save(payment);
+
+
         logger.info("Payment {} processed, sending data to kafka.", payment.getId());
         clientService.sendClientToKafka(payment.getClient());
     }
