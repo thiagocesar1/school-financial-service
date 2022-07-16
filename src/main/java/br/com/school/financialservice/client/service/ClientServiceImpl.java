@@ -31,10 +31,6 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void sendClientToKafka(Client client){
-        try {
-            clientProducer.send(objectMapper.writeValueAsString(client));
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+        clientProducer.send(client);
     }
 }

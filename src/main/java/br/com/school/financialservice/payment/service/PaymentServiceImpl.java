@@ -5,6 +5,9 @@ import br.com.school.financialservice.card.exception.InvalidCardException;
 import br.com.school.financialservice.card.service.CardService;
 import br.com.school.financialservice.client.domain.Client;
 import br.com.school.financialservice.client.service.ClientService;
+import br.com.school.financialservice.kafka.DTO.MailDTO;
+import br.com.school.financialservice.kafka.enums.MailType;
+import br.com.school.financialservice.kafka.producer.MailProducer;
 import br.com.school.financialservice.payment.domain.Payment;
 import br.com.school.financialservice.payment.domain.PaymentRepository;
 import br.com.school.financialservice.payment.enums.PaymentStatus;
@@ -19,6 +22,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
@@ -34,6 +39,9 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Autowired
     private PaymentRepository paymentRepository;
+
+    @Autowired
+    private MailProducer mailProducer;
 
     @Override
     @Transactional
@@ -66,8 +74,28 @@ public class PaymentServiceImpl implements PaymentService {
         payment.setStatus(PaymentStatus.OK);
         paymentRepository.save(payment);
 
+        sendPaymentApprovedMail(payment);
 
         logger.info("Payment {} processed, sending data to kafka.", payment.getId());
         clientService.sendClientToKafka(payment.getClient());
+    }
+
+    private void sendPaymentApprovedMail(Payment payment){
+        Map<String, String> attributes = new HashMap<String, String>();
+        attributes.put("userName", payment.getClient().getName());
+        attributes.put("cardNumber", payment.getCard().getCardData());
+        attributes.put("cardType", payment.getCard().getType().name());
+        attributes.put("nameOnCard", payment.getCard().getOwnerName());
+
+
+        MailDTO mail = MailDTO.builder()
+                .mailType(MailType.PAYMENT_APPROVED_MAIL)
+                .mailTo(payment.getClient().getEmail())
+                .attributes(attributes)
+                .build();
+
+
+        logger.info("Sending payment approved mail to kafka.");
+        mailProducer.sendMail(mail);
     }
 }

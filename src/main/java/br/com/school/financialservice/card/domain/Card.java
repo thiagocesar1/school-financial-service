@@ -3,6 +3,7 @@ package br.com.school.financialservice.card.domain;
 import br.com.school.financialservice.card.enums.CardType;
 import br.com.school.financialservice.wallet.domain.Wallet;
 import lombok.Data;
+import org.apache.commons.lang.StringUtils;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -61,5 +62,9 @@ public class Card {
             default:
                 return true;
         }
+    }
+
+    public String getCardData(){
+       return StringUtils.overlay(this.numbers, StringUtils.repeat("*", this.numbers.length()-4), 0, this.numbers.length()-4);
     }
 }
